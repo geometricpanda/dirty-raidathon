@@ -15,6 +15,15 @@ provider "google" {
   zone    = "europe-west2-a"
 }
 
-resource "google_compute_network" "vpc_network" {
-  name = "terraform-network"
+resource "google_storage_bucket" "release" {
+  name          = "raidathon-angular-universal"
+  location      = "EU"
+  force_destroy = true
 }
+
+resource "google_storage_bucket_object" "release" {
+  name   = "release.zip"
+  bucket = "raidathon-angular-universal"
+  source = "./release.zip"
+}
+

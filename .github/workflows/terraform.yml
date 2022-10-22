@@ -1,13 +1,17 @@
 name: 'Terraform'
 
 on:
-  workflow_run:
-    workflows: ["Build"]
-    types:
-      - completed
+  push:
+    branches: [ "main" ]
+  pull_request:
 
-permissions:
-  contents: read
+#on:
+#  workflow_run:
+#    workflows: ["Build"]
+#    types:
+#      - completed
+
+permissions: write-all
 
 jobs:
   terraform:
@@ -24,6 +28,13 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v3
+
+    - uses: dsaltares/fetch-gh-release-asset@master
+      with:
+        repo: 'geometricpanda/dirty-raidathon'
+        version: 'tags/release-4fdef542a6776f46ebe3315a86c5a61f019c0d59'
+        file: 'release.zip'
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Write Secrets to json
       run: |
@@ -55,10 +66,3 @@ jobs:
       run: terraform apply -auto-approve -input=false
 
 
-#uses: dsaltares/fetch-gh-release-asset@master
-#with:
-#  repo: 'dsaltares/godot-wild-jam-18'
-#  version: 'tags/v0.1.18'
-#  file: 'plague-linux.zip'
-#  target: 'subdir/plague-linux.zip'
-#  token: ${{ secrets.GITHUB_TOKEN }}
