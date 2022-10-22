@@ -6,8 +6,7 @@ on:
     types:
       - completed
 
-permissions:
-  contents: read
+permissions: write-all
 
 jobs:
   terraform:
@@ -24,6 +23,10 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v3
+
+      # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      run: ls -als
 
     - name: Write Secrets to json
       run: |
