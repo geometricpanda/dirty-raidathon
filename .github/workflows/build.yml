@@ -16,6 +16,15 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+
       - run: yarn
+
       - run: yarn build:ssr
 
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ github.ref }}
+          files: |
+            index.js
+            dist
