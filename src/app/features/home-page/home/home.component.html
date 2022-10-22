@@ -1,1 +1,15 @@
-<p>home works!</p>
+<div class="pokemon-grid">
+
+  <div *ngFor="let pokemon of pokemons | async; let index = index"
+       class="pokemon">
+
+    <h1 class="pokemon__name">{{pokemon.name}}</h1>
+    <img class="pokemon__image"
+         [ngSrc]="pokemon.id | pokemon"
+         [alt]="pokemon.name"
+         [priority]="index < 4"
+         height="96"
+         width="96"/>
+  </div>
+
+</div>

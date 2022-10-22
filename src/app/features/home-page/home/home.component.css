@@ -1,0 +1,31 @@
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: auto;
+  max-width: 1020px;
+  gap: 16px;
+}
+
+@media (min-width: 48em) {
+  .pokemon-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pokemon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #CCC;
+  padding: 16px;
+}
+
+.pokemon__name {
+  font-family: var(--font-family);
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+}

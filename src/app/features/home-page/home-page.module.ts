@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 
 import { HomePageRoutingModule } from './home-page-routing.module';
 import { HomeComponent } from './home/home.component';
+import {PokemonPipe} from './home/pokemon.pipe';
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    PokemonPipe,
   ],
   imports: [
     CommonModule,
-    HomePageRoutingModule
-  ]
+    HomePageRoutingModule,
+    NgOptimizedImage,
+  ],
 })
 export class HomePageModule { }
