@@ -27,5 +27,5 @@ jobs:
           name: "release-${{ github.sha }}"
           tag_name: "release-${{ github.sha }}"
           files: |
-            index.js
-            dist/**/*
+            ./index.js
+            ./dist
