@@ -21,11 +21,13 @@ jobs:
 
       - run: yarn build:ssr
 
+      - name: Package
+        run: zip -r release.zip ./dist ./index.js
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           name: "release-${{ github.sha }}"
           tag_name: "release-${{ github.sha }}"
           files: |
-            index.js
-            dist/**/*
+            ./release.zip
