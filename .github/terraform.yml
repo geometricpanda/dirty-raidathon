@@ -1,9 +1,10 @@
 name: 'Terraform'
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
 
 permissions:
   contents: read
@@ -52,3 +53,12 @@ jobs:
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false
+
+
+#uses: dsaltares/fetch-gh-release-asset@master
+#with:
+#  repo: 'dsaltares/godot-wild-jam-18'
+#  version: 'tags/v0.1.18'
+#  file: 'plague-linux.zip'
+#  target: 'subdir/plague-linux.zip'
+#  token: ${{ secrets.GITHUB_TOKEN }}

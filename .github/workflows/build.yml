@@ -24,7 +24,8 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ github.ref }}
+          name: "release-${{ github.sha }}"
+          tag_name: "release-${{ github.sha }}"
           files: |
             index.js
-            dist
+            dist/**/*
